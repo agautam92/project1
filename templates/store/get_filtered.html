@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtered Data</title>
+</head>
+<body>
+<form  method="get" action='{% url 'get_filter' %}'>
+
+<label for="program">Select Program:
+    <select id="program" name="program">
+        <option values="Data Structure and Algorithm">Data Structure and Algorithm.</option>
+        <option value="Natural Language Processing">Natural Language Processing.</option>
+        <option value="Distributed Data System">Distributed Data System.</option>
+    </select>
+</label>
+<button type="submit" class="btn btn-warning">Submit</button>
+</form>
+
+{% if data %}
+<h3>{{data}}</h3>
+{% endif %}
+</body>
+</html>

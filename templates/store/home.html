@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="shortcut icon" href="https://z9t4u9f6.stackpathcdn.com/wp-content/themes/mdbootstrap4/favicon.ico" />
+
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet"  href="{% static 'store/css/home.css' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar" style="height:75px;">
+      <div class="container">
+        <div class="navbar-nav align-items-left">
+                <div class="text-center form-sm mt-2">
+                <a  href="{% url 'home' %}"> <button class="btn btn-warning"  >Pixel-Nation </button></a>
+                </div>
+<!--            <a class="navbar-brand bigbrand " href="{% url 'register' %}"><strong><|> </strong>ix-Nation </a>-->
+
+        </div>
+          {% if username %}
+
+            <div class="text-center form-sm mt-2">
+                 <i class="fa fa-sign-out"></i>
+            </div>
+
+           {% else %}
+
+            <div class="text-center form-sm mt-2">
+                <a  class="btn btn-primary btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm"><span class="fa fa-user" aria-hidden="true"></span></a>
+            </div>
+
+          {% endif %}
+        </div>
+        </nav>
+
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Modal cascading tabs-->
+      <div class="modal-c-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i>
+              Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i>
+              Register</a>
+          </li>
+        </ul>
+
+        <!-- Tab panels -->
+        <div class="tab-content">
+          <!--Panel 7-->
+          <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body mb-1">
+              <div class="md-form form-sm mb-5">
+                <i class="fa fa-envelope prefix"></i>
+                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" placeholder="Your Email">
+<!--                <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>-->
+              </div>
+
+              <div class="md-form form-sm mb-4">
+                <i class="fa fa-lock prefix"></i>
+                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" placeholder="Your password">
+                <label data-error="wrong" data-success="right" for="modalLRInput11"></label>
+              </div>
+              <div class="text-center mt-2">
+                <button class="btn btn-info">Log in <i class="fa fa-sign-in ml-1"></i></button>
+              </div>
+
+
+<!--                 <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Log in-->
+<!--          with:</p>-->
+<!--                <div class="row my-3 d-flex justify-content-center">-->
+<!--          &lt;!&ndash;Facebook&ndash;&gt;-->
+<!--          <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-facebook-f text-center"></i></button>-->
+<!--          &lt;!&ndash;Twitter&ndash;&gt;-->
+<!--          <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-twitter"></i></button>-->
+<!--          &lt;!&ndash;Google +&ndash;&gt;-->
+<!--          <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fa fa-google"></i></button>-->
+<!--        </div>-->
+
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+              <div class="options text-center text-md-right mt-1">
+<!--                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>-->
+                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+              </div>
+              <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+          <!--/.Panel 7-->
+
+          <!--Panel 8-->
+          <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <form method='post' action='{% url 'register' %}'>
+                {% csrf_token %}
+
+
+                              <div class="md-form form-sm mb-4">
+                                <i class="fa fa-user prefix"></i>
+                <!--                <input type="password" id="modalLRInput14" class="form-control form-control-sm validate" placeholder="Repeat    password">-->
+                                  <input name= "username"  id="modalLRInput14" type="text" class="form-control form-control-sm validate" placeholder="Username">
+<!--                                <label data-error="wrong" data-success="right" ></label>-->
+                              </div>
+
+                              <div class="md-form form-sm mb-5">
+                                <i class="fa fa-envelope prefix"></i>
+                                <input type="email" name="email" id="modalLRInput12" class="form-control form-control-sm validate" placeholder="Your Email">
+<!--                                <label data-error="wrong" data-success="right" for="modalLRInput12"> </label>-->
+                              </div>
+
+                              <div class="md-form form-sm mb-5">
+                                <i class="fa fa-lock prefix"></i>
+                                <input type="password" name="password" id="modalLRInput13" class="form-control form-control-sm validate" placeholder="Your Password">
+
+<!--                                <label data-error="wrong" data-success="right" for="modalLRInput13"></label>-->
+                              </div>
+
+
+
+                              <div class="text-center form-sm mt-2">
+                                <button class="btn btn-info" type="submit">Sign up <i class="fa fa-sign-in"></i></button>
+                              </div>
+</form>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+<!--              <div class="options text-right">-->
+<!--                <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>-->
+<!--              </div>-->
+              <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!--/.Panel 8-->
+        </div>
+
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+    <!--/.Content-->
+  </div>
+                </div>
+
+
+<!--                                  <div class="content container bg-light">-->
+<!--                                      <div class="row">-->
+<!--                                          <div class="col-md-8">-->
+                                            <div class="To_Do">
+                                              {% block body_block %}
+
+                                              {% endblock %}
+
+                                            </div>
+<!--                                          </div>-->
+<!--                                      </div>-->
+<!--                                  </div>-->
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
