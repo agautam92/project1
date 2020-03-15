@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from store.views import Home,SignUPView,GetFilter
+from store.views import Home,SignUPView,GetFilter,home
 
 
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     path('',Home.as_view(),name='home'),
     path('register',SignUPView.as_view(),name='register'),
     path('get_filter',GetFilter.as_view(),name='get_filter'),
+    path('home',home,name='home')
 ]
