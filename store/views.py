@@ -1,31 +1,21 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView
 from user.models import CustomUser
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from store.models import Image
 
 class Home(TemplateView):
     template_name = 'store/home.html'
 
 
-class SignUPView(TemplateView):
-    template_name = 'store/home.html'
+class Profile(TemplateView):
+    template_name = 'store/post_signup.html'
 
-    def post(self,request,*args,**kwargs):
-        if request.method =='POST':
-            username = request.POST.get('username')
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-
-            if username and email:
-                user = CustomUser(username=username,email=email)
-                user.set_password(password)
-                user.save()
-                return render(request,'store/post_signup.html',context={'username':username})
-            else:
-                return HttpResponse("<h3>You are NOT registered </h3>")
-        else:
-            return redirect("store/signup.html")
+    def get(self,request, **kwargs):
+        data={}
+        data['user_images'] = Image.objects.filter(artist=request.user)
+        return self.render_to_response(data)
 
 
 class GetFilter(TemplateView):
@@ -35,5 +25,16 @@ class GetFilter(TemplateView):
         data = request.GET.get('program')
         return render(request,'store/get_filtered.html',context={'data':data})
 
-def home(request):
-    return render(request,'recommendation/trending.html')
+class Upload(TemplateView):
+    template_name = 'store/upload.html'
+    def post(self,request):
+        if request.method == "POST":
+            image = request.FILES['artwork']
+            description = request.POST['description']
+            artist = request.user
+            name = request.user.username
+            form_data = Image(image=image,description=description,name=name,artist=artist)
+            form_data.save()
+            return HttpResponse("<h3>Data Stored Succesfullt </h3>")
+        else:
+            return HttpResponse("<h3>Something Went Wrong </h3>")

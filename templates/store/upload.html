@@ -1,0 +1,39 @@
+{% extends "store/home.html" %}
+    {% load static %}
+
+ {% block body_block %}
+<head>
+ <script src="{% static 'js/store.js' %}"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<form method="post" id="imupload" action="{% url 'upload' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="row">
+        <label> </label>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+
+                   <input type="file" id="imgInp" name='artwork' >
+                </span>
+            </span>
+        </div>
+
+
+    <div class="col-6"><img  id='img-upload'/></div>
+
+    <div class="col-4"><textarea name='description' rows="4" cols="35" placeholder="tell something..." id="description" form="imupload"> </textarea></div>
+    <div class="col-2"><button type="submit"><i class="fa fa-cloud-upload" style="font-size:36px;color:#2bbbad;"></i></button></div>
+
+</div>
+</div>
+
+</form>
+
+
+
+
+
+ {% endblock %}
