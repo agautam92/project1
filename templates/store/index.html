@@ -3,31 +3,6 @@
     {% load static %}
 
  {% block body_block %}
-<head>
-        <style>
-div.gallery {
-  margin: 12px;
-  border: 2px solid #ccc;
-  float: left;
-  width: 380px;
-}
-
-div.gallery:hover {
-  border: 3px solid #777;
-}
-
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
-
-div.desc {
-  padding: 25px;
-  text-align: center;
-}
-</style>
-</head>
-
 
             <div class="gallery" >
                 <img src= {% static "store/images/79FB95F7-3AB9-4231-9876-E1D765C60334_1_105_c.jpeg" %}  >
@@ -45,9 +20,8 @@ div.desc {
                 <img src= {% static "store/images/BB523678-54E9-46E0-9F81-4F1B7A4D90B6_1_105_c.jpeg" %}  >
                 <div class="desc"><strong>By:</strong> Anectode, <strong>Likes:</strong>12</div>
             </div>
-            <div class="gallery">
-                <img src= {% static "store/images/D392AE96-DCA8-46A9-9E45-AD0D19AC9A7A_1_105_c.jpeg" %}  >
-                <div class="desc"><strong>By:</strong> Anectode, <strong>Likes:</strong>12</div>
-            </div>
+
+
+
 
  {% endblock %}
